@@ -19,7 +19,26 @@ const PortfolioChart: React.FC<PortfolioChartProps> = ({ data }) => {
 		series.dataFields.value = "price";
 		series.dataFields.category = "asset";
 
-		chart.legend = new Legend();
+		// Enable legend for the PieSeries
+		series.legendSettings.valueText = "{category}: {value}";
+
+		// Configure label settings
+		const labelTemplate = series.labels.template;
+		labelTemplate.fontSize = 12; // Font size
+		labelTemplate.wrap = true; // Enable text wrapping
+		labelTemplate.width = 100; // Set the desired label width
+		labelTemplate.height = 50; // Set the desired label height
+
+		// Configure legend settings
+		const legend = new Legend();
+		legend.useDefaultMarker = true; // Use default marker for legend items
+		legend.position = "bottom"; // Change the legend position (e.g., "bottom", "top", "right", "left")
+		legend.align = "center"; // Align the legend
+		legend.valueLabels.template.fontSize = 12; // Font size for legend value labels
+		legend.valueLabels.template.width = 100; // Set the desired width for legend value labels
+		legend.valueLabels.template.height = 50; // Set the desired height for legend value labels
+
+		chart.legend = legend; // Assign the legend to the chart
 
 		// Apply amCharts theme
 		chart.colors.step = 2;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React, { useState, useEffect, ChangeEvent, useRef } from "react";
 import axios from "axios";
 import Select from "react-select";
 
@@ -39,6 +39,17 @@ const Dashboard: React.FC = () => {
 	const [userPositionData, setUserPositionData] = useState<any[]>([]); // New state for user position data
 
 	const [isLoading, setIsLoading] = useState(true);
+
+	const [isDateRangePickerOpen, setIsDateRangePickerOpen] = useState(false);
+
+	// const dateRangePickerRef = useRef(null);
+
+	// const openDateRangePicker = () => {
+	// 	// Access the current property to get the DatePicker component instance
+	// 	if (dateRangePickerRef.current) {
+	// 		dateRangePickerRef.current.setOpen(true);
+	// 	}
+	// };
 
 	useEffect(() => {
 		const fetchAllAssets = async () => {
@@ -285,7 +296,7 @@ const Dashboard: React.FC = () => {
 
 			<div className="dashboard-controls">
 				{/* Date Range Selector */}
-				<div className="date-range-selector">
+				{/* <div className="date-range-selector">
 					<label htmlFor="dateRangePicker">Select Date Range:</label>
 					<DatePicker
 						id="dateRangePicker"
@@ -296,6 +307,31 @@ const Dashboard: React.FC = () => {
 						selectsRange
 						inline
 					/>
+				</div> */}
+
+				{/* Date Range Selector */}
+				<div className="date-range-selector">
+					<label htmlFor="dateRangePicker">Select Date Range:</label>
+					<input
+						id="dateRangePicker"
+						value={`${
+							startDate ? startDate.toLocaleDateString() : ""
+						} - ${endDate ? endDate.toLocaleDateString() : ""}`}
+						onClick={() =>
+							setIsDateRangePickerOpen((prev) => !prev)
+						}
+						readOnly
+					/>
+					{isDateRangePickerOpen && (
+						<DatePicker
+							selected={startDate}
+							onChange={handleDateRangeChange}
+							startDate={startDate}
+							endDate={endDate}
+							selectsRange
+							inline
+						/>
+					)}
 				</div>
 
 				{/* Asset Class Selector Dropdown */}
