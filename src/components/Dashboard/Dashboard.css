@@ -1,0 +1,109 @@
+/* Dashboard.css */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.dashboard-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.date-range-selector,
+.asset-class-selector,
+.asset-selector {
+  flex: 1 1 100%;
+  margin-bottom: 10px;
+}
+
+.dashboard-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.date-range-selector,
+.asset-class-selector,
+.asset-selector {
+  flex: 1 1 100%;
+}
+
+@media (min-width: 768px) {
+  .date-range-selector {
+    flex: 0 0 calc(50% - 10px);
+  }
+
+  .asset-class-selector,
+  .asset-selector {
+    flex: 0 0 calc(50% - 10px);
+  }
+}
+
+.charts-container {
+  display: flex;
+  gap: 10px;
+}
+
+.chart {
+  flex: 1 1 100%;
+}
+
+@media (min-width: 768px) {
+  .chart {
+    flex: 1 1 calc(50% - 10px);
+  }
+}
+
+@media (min-width: 600px) {
+  .date-range-selector,
+  .asset-class-selector,
+  .asset-selector {
+    flex: 1 1 calc(33.33% - 10px);
+  }
+}
+
+@media (min-width: 768px) {
+  .date-range-selector,
+  .asset-class-selector,
+  .asset-selector {
+    flex: 1 1 calc(33.33% - 10px);
+  }
+}
+
+@media (min-width: 992px) {
+  .date-range-selector,
+  .asset-class-selector,
+  .asset-selector {
+    flex: 1 1 calc(33.33% - 10px);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive font sizes */
+body {
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+/* Add more responsive styles as needed */
