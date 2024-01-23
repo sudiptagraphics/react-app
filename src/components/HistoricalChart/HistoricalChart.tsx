@@ -68,7 +68,7 @@ const HistoricalChart: React.FC<HistoricalChartProps> = ({ priceData }) => {
 	}, [priceData]);
 
 	return (
-		<div id="historicalChart" style={{ width: "100%", height: "500px" }} />
+		<div className="chartsstyle" id="historicalChart" style={{ width: "100%", height: "450px" }} />
 	);
 };
 

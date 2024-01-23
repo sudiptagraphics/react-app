@@ -289,12 +289,15 @@ const Dashboard: React.FC = () => {
 	};
 
 	return (
-		<div className="container">
-			<h1>Financial Portfolio Dashboard</h1>
+		<div className="full-wrap">
+			<div className="container">
+				<div className="heading">
+					<h1>Financial Portfolio Dashboard</h1>
+				</div>
 
-			<div className="dashboard-controls">
-				{/* Date Range Selector */}
-				{/* <div className="date-range-selector">
+				<div className="dashboard-controls">
+					{/* Date Range Selector */}
+					{/* <div className="date-range-selector">
 					<label htmlFor="dateRangePicker">Select Date Range:</label>
 					<DatePicker
 						id="dateRangePicker"
@@ -307,106 +310,113 @@ const Dashboard: React.FC = () => {
 					/>
 				</div> */}
 
-				{/* Date Range Selector */}
-				<div className="date-range-selector">
-					<label htmlFor="dateRangePicker">Select Date Range:</label>
-					<input
-						id="dateRangePicker"
-						value={`${startDate ? startDate.toLocaleDateString() : ""
-							} - ${endDate ? endDate.toLocaleDateString() : ""}`}
-						onClick={() =>
-							setIsDateRangePickerOpen((prev) => !prev)
-						}
-						readOnly
-					/>
-					{isDateRangePickerOpen && (
-						<DatePicker
-							selected={startDate}
-							onChange={handleDateRangeChange}
-							startDate={startDate}
-							endDate={endDate}
-							selectsRange
-							inline
-						/>
-					)}
-				</div>
-
-				<div className="dashboard-controls">
 					{/* Date Range Selector */}
+
+
+					<div className="dashboard-controls-top">
+						{/* Date Range Selector */}
+						{/* <div className="date-range-selector">
+							<label htmlFor="dateRangePicker">Select Date Range:</label>
+							<DatePicker
+								id="dateRangePicker"
+								selected={startDate}
+								onChange={handleDateRangeChange}
+								startDate={startDate}
+								endDate={endDate}
+								selectsRange
+								inline
+							/>
+						</div> */}
+
+						{/* Asset Class Selector Dropdown */}
+						<div className="asset-class-selector as-sector">
+							<label htmlFor="assetClassSelector">
+								Select Asset Classes:
+							</label>
+							<Select
+								id="assetClassSelector"
+								options={assetClasses.map((assetClass) => ({
+									value: assetClass,
+									label: assetClass,
+								}))}
+								isMulti
+								value={selectedAssetClasses.map((assetClass) => ({
+									value: assetClass,
+									label: assetClass,
+								}))}
+								onChange={handleAssetClassChange}
+							/>
+						</div>
+
+						{/* Asset Selector Dropdown */}
+						<div className="asset-selector as-sector">
+							<label htmlFor="assetSelector">Select Assets:</label>
+							<Select
+								id="assetSelector"
+								options={[
+									{ value: "All", label: "All" },
+									...assets.map((asset) => ({
+										value: asset.symbol,
+										label: asset.name,
+									})),
+								]}
+								isMulti
+								value={
+									selectedAssets.length > 0
+										? selectedAssets.map((assetSymbol) => ({
+											value: assetSymbol,
+											label: assetSymbol,
+										}))
+										: [{ value: "All", label: "All" }]
+								}
+								onChange={handleAssetChange}
+							/>
+						</div>
+					</div>
+
+
 					<div className="date-range-selector">
 						<label htmlFor="dateRangePicker">Select Date Range:</label>
-						<DatePicker
+						<input
 							id="dateRangePicker"
-							selected={startDate}
-							onChange={handleDateRangeChange}
-							startDate={startDate}
-							endDate={endDate}
-							selectsRange
-							inline
-						/>
-					</div>
-
-					{/* Asset Class Selector Dropdown */}
-					<div className="asset-class-selector">
-						<label htmlFor="assetClassSelector">
-							Select Asset Classes:
-						</label>
-						<Select
-							id="assetClassSelector"
-							options={assetClasses.map((assetClass) => ({
-								value: assetClass,
-								label: assetClass,
-							}))}
-							isMulti
-							value={selectedAssetClasses.map((assetClass) => ({
-								value: assetClass,
-								label: assetClass,
-							}))}
-							onChange={handleAssetClassChange}
-						/>
-					</div>
-
-					{/* Asset Selector Dropdown */}
-					<div className="asset-selector">
-						<label htmlFor="assetSelector">Select Assets:</label>
-						<Select
-							id="assetSelector"
-							options={[
-								{ value: "All", label: "All" },
-								...assets.map((asset) => ({
-									value: asset.symbol,
-									label: asset.name,
-								})),
-							]}
-							isMulti
-							value={
-								selectedAssets.length > 0
-									? selectedAssets.map((assetSymbol) => ({
-										value: assetSymbol,
-										label: assetSymbol,
-									}))
-									: [{ value: "All", label: "All" }]
+							value={`${startDate ? startDate.toLocaleDateString() : ""
+								} - ${endDate ? endDate.toLocaleDateString() : ""}`}
+							onClick={() =>
+								setIsDateRangePickerOpen((prev) => !prev)
 							}
-							onChange={handleAssetChange}
+							readOnly
 						/>
+						{isDateRangePickerOpen && (
+							<DatePicker
+								selected={startDate}
+								onChange={handleDateRangeChange}
+								startDate={startDate}
+								endDate={endDate}
+								selectsRange
+								inline
+							/>
+						)}
 					</div>
+
+					<div className="charts-full-wrap">
+						{isLoading ? (
+							<p>Loading...</p>
+						) : (
+							<div className="charts-container">
+
+								<div className="chart">
+									<DoughnutChart data={priceData} />
+								</div>
+								<div className="chart">
+									<h2 className="title-blocks">Historical Data</h2>
+									<HistoricalChart priceData={historicalData} />
+								</div>
+							</div>
+						)}
+					</div>
+
+					<PortfolioChart userPositionData={userPositionData} />
 				</div>
-
-				{isLoading ? (
-					<p>Loading...</p>
-				) : (
-					<div className="charts-container">
-						<div className="chart">
-							<DoughnutChart data={priceData} />
-						</div>
-						<div className="chart">
-							<h1>Historical Data</h1>
-							<HistoricalChart priceData={historicalData} />
-						</div>
-					</div>
-				)}
-
-				<PortfolioChart userPositionData={userPositionData} />
 			</div>
 		</div>
 	);

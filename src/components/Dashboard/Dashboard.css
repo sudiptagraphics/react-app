@@ -45,11 +45,15 @@
 
 .charts-container {
   display: flex;
-  gap: 10px;
+  gap: 25;
+  background: #fff;
+  border-radius: 16px;
+  /* box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.07); */
+  margin: 20px 0;
 }
 
 .chart {
-  flex: 1 1 100%;
+  padding: 20px;
 }
 
 @media (min-width: 768px) {
@@ -116,4 +120,75 @@ body {
   text-align: left;
   font-size: 18px;
   font-weight: 600;
+}
+
+.charts-full-wrap {
+  width: 100%;
+}
+
+.title-blocks {
+  text-align: left;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.chartsstyle {
+  font-size: 12px;
+}
+
+.table-wrap {
+  padding: 20px;
+  background: #fff;
+  border-radius: 14px;
+  width: 100%;
+}
+
+.port-val {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.port-val h4 {
+  font-size: 16px;
+  margin-top: 0;
+}
+
+.portfolio-value {
+  color: #0052cc;
+  font-weight: 600;
+  margin-top: 0;
+}
+
+.table-wrap th {
+  border-color: #1199ee;
+  background: #1199ee;
+  color: #fff;
+  font-size: 14px;
+}
+
+.table-wrap td {
+  border-color: #ededed;
+  color: #000;
+  font-size: 14px;
+}
+
+.dashboard-controls-top {
+  padding: 20px 5px;
+  background: #fff;
+  border-radius: 14px;
+  text-align: left;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.as-sector {
+  width: 50%;
+  padding: 0 15px;
+}
+
+.as-sector label {
+  font-size: 14px;
+  margin-bottom: 10px;
 }

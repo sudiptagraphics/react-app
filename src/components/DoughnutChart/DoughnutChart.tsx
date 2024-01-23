@@ -54,10 +54,10 @@ const PortfolioChart: React.FC<PortfolioChartProps> = ({ data }) => {
 
 	return (
 		<div>
-			<h2>Portfolio Balance</h2>
+			<h2 className="title-blocks">Portfolio Balance</h2>
 			<div
-				id="chartdivPort"
-				style={{ width: "100%", height: "300px" }}
+				id="chartdivPort" className="chartsstyle"
+				style={{ width: "100%", height: "450px", }}
 			></div>
 		</div>
 	);

@@ -23,18 +23,21 @@ const UserPortfolio: React.FC<UserPortfolioProps> = ({ userPositionData }) => {
 	};
 
 	return (
-		<div>
-			<div>
-				<h2>Portfolio Summary</h2>
-				<p>
-					Total Portfolio Value: $
-					{calculatePortfolioValue().toFixed(2)}
-				</p>
+		<div className="table-wrap">
+			<div >
+				<h2 className="title-blocks">Portfolio Summary</h2>
+				<div className="port-val">
+					<h4>User Positions</h4>
+					<p className="portfolio-value">
+						Total Portfolio Value: $
+						{calculatePortfolioValue().toFixed(2)}
+					</p>
+				</div>
 			</div>
 
 			<div>
-				<h2>User Positions</h2>
-				<table>
+
+				<table className="table-wrap">
 					<thead>
 						<tr>
 							<th>Asset</th>
