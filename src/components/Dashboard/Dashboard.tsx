@@ -66,13 +66,13 @@ const Dashboard: React.FC = () => {
 			try {
 				let apiUrl =
 					selectedAssets.length === 0 ||
-					(selectedAssets.length === 1 && selectedAssets[0] === "All")
+						(selectedAssets.length === 1 && selectedAssets[0] === "All")
 						? `${API_URLS.price}?assets=${assets
-								.map((asset) => asset.symbol)
-								.join(",")}`
+							.map((asset) => asset.symbol)
+							.join(",")}`
 						: `${API_URLS.price}?assets=${selectedAssets.join(
-								","
-						  )}`;
+							","
+						)}`;
 
 				if (startDate && endDate) {
 					// If both startDate and endDate are selected with specific assets
@@ -104,15 +104,15 @@ const Dashboard: React.FC = () => {
 
 				const apiUrl =
 					selectedAssets.length === 0 ||
-					(selectedAssets.length === 1 && selectedAssets[0] === "All")
+						(selectedAssets.length === 1 && selectedAssets[0] === "All")
 						? `${API_URLS.price}?assets=${assets
-								.map((asset) => asset.symbol)
-								.join(
-									","
-								)}&from=${startDate?.toISOString()}&to=${endDate?.toISOString()}`
-						: `${API_URLS.price}?assets=${selectedAssets.join(
+							.map((asset) => asset.symbol)
+							.join(
 								","
-						  )}&from=${startDate?.toISOString()}&to=${endDate?.toISOString()}`;
+							)}&from=${startDate?.toISOString()}&to=${endDate?.toISOString()}`
+						: `${API_URLS.price}?assets=${selectedAssets.join(
+							","
+						)}&from=${startDate?.toISOString()}&to=${endDate?.toISOString()}`;
 
 				const response = await axios.get<any>(apiUrl);
 				const data = response.data;
@@ -136,18 +136,17 @@ const Dashboard: React.FC = () => {
 				try {
 					const apiUrl =
 						selectedAssets.length === 0 ||
-						(selectedAssets.length === 1 &&
-							selectedAssets[0] === "All")
+							(selectedAssets.length === 1 &&
+								selectedAssets[0] === "All")
 							? `${API_URLS.userPosition}?assets=${assets
-									.map((asset) => asset.symbol)
-									.join(
-										","
-									)}&startDate=${startDate?.toISOString()}&endDate=${endDate?.toISOString()}`
-							: `${
-									API_URLS.userPosition
-							  }?assets=${selectedAssets.join(
+								.map((asset) => asset.symbol)
+								.join(
 									","
-							  )}&startDate=${startDate?.toISOString()}&endDate=${endDate?.toISOString()}`;
+								)}&startDate=${startDate?.toISOString()}&endDate=${endDate?.toISOString()}`
+							: `${API_URLS.userPosition
+							}?assets=${selectedAssets.join(
+								","
+							)}&startDate=${startDate?.toISOString()}&endDate=${endDate?.toISOString()}`;
 
 					const response = await axios.get<any>(apiUrl);
 					const data = response.data;
@@ -263,9 +262,8 @@ const Dashboard: React.FC = () => {
 					? assets.map((asset) => asset.symbol).join(",")
 					: selectedAssets.join(",");
 
-			const apiUrl = `${
-				API_URLS.price
-			}?assets=${assetQueryParam}&from=${fromDate.toISOString()}&to=${toDate.toISOString()}`;
+			const apiUrl = `${API_URLS.price
+				}?assets=${assetQueryParam}&from=${fromDate.toISOString()}&to=${toDate.toISOString()}`;
 
 			const response = await axios.get(apiUrl);
 			const data = response.data;
@@ -280,85 +278,89 @@ const Dashboard: React.FC = () => {
 	};
 
 	return (
-		<div className="container">
-			<h1>Financial Portfolio Dashboard</h1>
-
-			<div className="dashboard-controls">
-				{/* Date Range Selector */}
-				<div className="date-range-selector">
-					<label htmlFor="dateRangePicker">Select Date Range:</label>
-					<DatePicker
-						id="dateRangePicker"
-						selected={startDate}
-						onChange={handleDateRangeChange}
-						startDate={startDate}
-						endDate={endDate}
-						selectsRange
-						inline
-					/>
+		<div className="w-100">
+			<div className="container">
+				<div className="heading">
+					<h1>Financial Portfolio Dashboard</h1>
 				</div>
 
-				{/* Asset Class Selector Dropdown */}
-				<div className="asset-class-selector">
-					<label htmlFor="assetClassSelector">
-						Select Asset Classes:
-					</label>
-					<Select
-						id="assetClassSelector"
-						options={assetClasses.map((assetClass) => ({
-							value: assetClass,
-							label: assetClass,
-						}))}
-						isMulti
-						value={selectedAssetClasses.map((assetClass) => ({
-							value: assetClass,
-							label: assetClass,
-						}))}
-						onChange={handleAssetClassChange}
-					/>
-				</div>
+				<div className="dashboard-controls">
+					{/* Date Range Selector */}
+					<div className="date-range-selector">
+						<label htmlFor="dateRangePicker">Select Date Range:</label>
+						<DatePicker
+							id="dateRangePicker"
+							selected={startDate}
+							onChange={handleDateRangeChange}
+							startDate={startDate}
+							endDate={endDate}
+							selectsRange
+							inline
+						/>
+					</div>
 
-				{/* Asset Selector Dropdown */}
-				<div className="asset-selector">
-					<label htmlFor="assetSelector">Select Assets:</label>
-					<Select
-						id="assetSelector"
-						options={[
-							{ value: "All", label: "All" },
-							...assets.map((asset) => ({
-								value: asset.symbol,
-								label: asset.name,
-							})),
-						]}
-						isMulti
-						value={
-							selectedAssets.length > 0
-								? selectedAssets.map((assetSymbol) => ({
+					{/* Asset Class Selector Dropdown */}
+					<div className="asset-class-selector">
+						<label htmlFor="assetClassSelector">
+							Select Asset Classes:
+						</label>
+						<Select
+							id="assetClassSelector"
+							options={assetClasses.map((assetClass) => ({
+								value: assetClass,
+								label: assetClass,
+							}))}
+							isMulti
+							value={selectedAssetClasses.map((assetClass) => ({
+								value: assetClass,
+								label: assetClass,
+							}))}
+							onChange={handleAssetClassChange}
+						/>
+					</div>
+
+					{/* Asset Selector Dropdown */}
+					<div className="asset-selector">
+						<label htmlFor="assetSelector">Select Assets:</label>
+						<Select
+							id="assetSelector"
+							options={[
+								{ value: "All", label: "All" },
+								...assets.map((asset) => ({
+									value: asset.symbol,
+									label: asset.name,
+								})),
+							]}
+							isMulti
+							value={
+								selectedAssets.length > 0
+									? selectedAssets.map((assetSymbol) => ({
 										value: assetSymbol,
 										label: assetSymbol,
-								  }))
-								: [{ value: "All", label: "All" }]
-						}
-						onChange={handleAssetChange}
-					/>
+									}))
+									: [{ value: "All", label: "All" }]
+							}
+							onChange={handleAssetChange}
+						/>
+					</div>
 				</div>
+
+				{isLoading ? (
+					<p>Loading...</p>
+				) : (
+					<div className="charts-container">
+						<div className="chart">
+							<DoughnutChart data={priceData} />
+						</div>
+						<div className="chart">
+							<h1>Historical Data</h1>
+							<HistoricalChart priceData={historicalData} />
+						</div>
+					</div>
+				)}
+
+				<PortfolioChart userPositionData={userPositionData} />
 			</div>
-
-			{isLoading ? (
-				<p>Loading...</p>
-			) : (
-				<div className="charts-container">
-					<div className="chart">
-						<DoughnutChart data={priceData} />
-					</div>
-					<div className="chart">
-						<h1>Historical Data</h1>
-						<HistoricalChart priceData={historicalData} />
-					</div>
-				</div>
-			)}
-
-			<PortfolioChart userPositionData={userPositionData} />
 		</div>
 	);
 };
