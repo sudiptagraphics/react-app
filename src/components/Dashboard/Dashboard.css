@@ -192,3 +192,37 @@ body {
   font-size: 14px;
   margin-bottom: 10px;
 }
+
+.date-range-selector {
+  padding: 20px 20px;
+  background: #fff;
+  border-radius: 14px;
+  text-align: left;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+
+.re-date-picker {
+  position: relative;
+}
+
+.react-datepicker {
+  position: absolute;
+  left: 15px;
+  top: 50px;
+  z-index: 9;
+}
+
+.datepicker-input {
+  width: 300px;
+  height: 42px;
+  text-indent: 10px;
+  font-size: 13px;
+  outline: none !important;
+  border: 1px solid #ededed;
+  border-radius: 5px;
+  margin-left: 15px;
+}

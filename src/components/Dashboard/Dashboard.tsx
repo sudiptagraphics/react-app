@@ -376,26 +376,28 @@ const Dashboard: React.FC = () => {
 
 
 					<div className="date-range-selector">
-						<label htmlFor="dateRangePicker">Select Date Range:</label>
-						<input
-							id="dateRangePicker"
-							value={`${startDate ? startDate.toLocaleDateString() : ""
-								} - ${endDate ? endDate.toLocaleDateString() : ""}`}
-							onClick={() =>
-								setIsDateRangePickerOpen((prev) => !prev)
-							}
-							readOnly
-						/>
-						{isDateRangePickerOpen && (
-							<DatePicker
-								selected={startDate}
-								onChange={handleDateRangeChange}
-								startDate={startDate}
-								endDate={endDate}
-								selectsRange
-								inline
+						<label htmlFor="dateRangePicker">Select Date Range </label>
+						<div className="re-date-picker">
+							<input className="datepicker-input"
+								id="dateRangePicker"
+								value={`${startDate ? startDate.toLocaleDateString() : ""
+									} - ${endDate ? endDate.toLocaleDateString() : ""}`}
+								onClick={() =>
+									setIsDateRangePickerOpen((prev) => !prev)
+								}
+								readOnly
 							/>
-						)}
+							{isDateRangePickerOpen && (
+								<DatePicker
+									selected={startDate}
+									onChange={handleDateRangeChange}
+									startDate={startDate}
+									endDate={endDate}
+									selectsRange
+									inline
+								/>
+							)}
+						</div>
 					</div>
 
 					<div className="charts-full-wrap">
